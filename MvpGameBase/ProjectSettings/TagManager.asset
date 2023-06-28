@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - ship
+  - asteroid
   layers:
   - Default
   - TransparentFX
@@ -40,4 +42,37 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Scenes
+    uniqueID: 3764535155
+    locked: 0
+  - name: Screen
+    uniqueID: 2617577917
+    locked: 0
+  - name: Screen Overlay Preloader
+    uniqueID: 984560039
+    locked: 0
+  - name: Screen Overlay
+    uniqueID: 1100221769
+    locked: 0
+  - name: Popup
+    uniqueID: 2671735129
+    locked: 0
+  - name: Popup Overlay
+    uniqueID: 4099479329
+    locked: 0
+  - name: Message
+    uniqueID: 3669472929
+    locked: 0
+  - name: Message Overlay
+    uniqueID: 2257761241
+    locked: 0
+  - name: Error
+    uniqueID: 3042549223
+    locked: 0
+  - name: Error Overlay
+    uniqueID: 1233749315
+    locked: 0
+  - name: Network Loss
+    uniqueID: 295918619
     locked: 0
