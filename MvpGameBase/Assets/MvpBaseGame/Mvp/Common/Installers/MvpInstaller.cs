@@ -1,3 +1,4 @@
+using MvpBaseGame.Mvp.ViewManagement.Presenters.Main;
 using MvpBaseGame.Commands.Core;
 using Zenject;
 
@@ -45,11 +46,10 @@ namespace ProductMadness.CashmanCasino.Core.Installers
         {
             //override in sub class
         }
-
-        // TODO: uncomment after Presenter Binder Implemented
-        // protected virtual void BindPresenters(IPresenterBinder presenterBinder)
-        // {
-        //     //override in sub class
-        // }
+        
+        protected virtual void BindPresenters(IPresenterBinder presenterBinder)
+        {
+            //override in sub class
+        }
     }
 }

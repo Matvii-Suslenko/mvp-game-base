@@ -1,10 +1,9 @@
-#if !NOT_UNITY3D
-
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
-namespace Zenject
+namespace Plugins.Zenject.Source.Providers.PrefabCreators
 {
     public interface IPrefabInstantiator
     {
@@ -28,5 +27,3 @@ namespace Zenject
         UnityEngine.Object GetPrefab(InjectContext context);
     }
 }
-
-#endif

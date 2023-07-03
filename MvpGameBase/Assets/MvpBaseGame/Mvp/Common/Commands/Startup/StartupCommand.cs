@@ -14,13 +14,12 @@ namespace MvpBaseGame.Mvp.Common.Commands.Startup
         {
             var mainFlow = new GroupCommandInfo(CommandGroupType.Sequence);
             //mainFlow.Add<LoadPreloaderCommand>();
-            //mainFlow.Add<ShowPreloaderCommand>(new PreloaderScreenPayload(true));
+            mainFlow.Add<ShowPreloaderCommand>();
+            
             //mainFlow.Add<LoadLobbyAssetsCommand>();
 
             var parallelGroup = new GroupCommandInfo(CommandGroupType.Parallel);
             parallelGroup.Add(mainFlow);
-            // parallelGroup.Add<RefreshFeaturesCommand>(true);
-            // parallelGroup.Add<GetSocialAccountInfoCommand>();
             
             //groupCommandInfo.Add<InitializeUnityLoggingCommand>();
             //groupCommandInfo.Add<InitialiseApplicationCommand>();

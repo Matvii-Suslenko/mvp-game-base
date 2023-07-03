@@ -12,4 +12,15 @@ namespace MvpBaseGame.Promises
 
         void RemoveListeners();
     }
+    
+    public interface IPromise<T> : IBasePromise
+    {
+        IPromise<T> Then(Action<T> action);
+
+        void Dispatch(T t);
+
+        void RemoveListener(Action<T> action);
+
+        void RemoveListeners();
+    }
 }

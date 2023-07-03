@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using Plugins.Zenject.Source.Providers.PrefabCreators;
 using UnityEngine;
 
 namespace Zenject

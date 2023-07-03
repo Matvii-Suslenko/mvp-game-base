@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using ModestTree;
+using Plugins.Zenject.Source.Providers.PrefabCreators;
 
 #if !NOT_UNITY3D
 using UnityEngine;

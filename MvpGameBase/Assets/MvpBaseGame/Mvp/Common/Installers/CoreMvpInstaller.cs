@@ -1,5 +1,9 @@
+using MvpBaseGame.Assets.Impl;
 using ProductMadness.CashmanCasino.Core.Installers;
 using MvpBaseGame.Commands.Core;
+using MvpBaseGame.Utils.CoroutineRunner;
+using MvpBaseGame.Utils.CoroutineRunner.Impl;
+using UnityEngine;
 
 namespace MvpBaseGame.Mvp.Common.Installers
 {
@@ -12,6 +16,11 @@ namespace MvpBaseGame.Mvp.Common.Installers
         protected override void BindCommon()
         {
             AddFeatureInstallers();
+        }
+        
+        protected override void BindModels()
+        {
+            Container.BindInterfacesTo<AssetModel>().AsSingle();
         }
 
         private void AddFeatureInstallers()

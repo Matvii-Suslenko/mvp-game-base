@@ -2,6 +2,8 @@ using MvpBaseGame.Mvp.Common.Commands.Startup.Impl;
 using ProductMadness.CashmanCasino.Core.Installers;
 using MvpBaseGame.Mvp.Common.Commands.Startup;
 using MvpBaseGame.Commands.Core;
+using MvpBaseGame.Mvp.Common.Views.PreloaderScreen;
+using MvpBaseGame.Mvp.ViewManagement.Presenters.Main;
 
 namespace MvpBaseGame.Mvp.Common.Installers
 {
@@ -26,11 +28,11 @@ namespace MvpBaseGame.Mvp.Common.Installers
         protected override void BindServices()
         {
         }
-
-        // TODO: uncomment after Presenter Binder Implemented
-        // protected override void BindPresenters(IPresenterBinder presenterBinder)
-        // {
-        // }
+        
+        protected override void BindPresenters(IPresenterBinder presenterBinder)
+        {
+            presenterBinder.BindView<PreloaderScreenView>().ToPresenter<PreloaderScreenPresenter>();
+        }
 
         protected override void BindCommands(ICommandBinder commandBinder)
         {

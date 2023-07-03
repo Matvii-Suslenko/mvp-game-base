@@ -1,13 +1,12 @@
-#if !NOT_UNITY3D
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Zenject.Internal;
 using ModestTree;
 using UnityEngine;
+using Zenject;
+using Zenject.Internal;
 
-namespace Zenject
+namespace Plugins.Zenject.Source.Providers.PrefabCreators
 {
     [NoReflectionBaking]
     public class PrefabInstantiator : IPrefabInstantiator
@@ -132,5 +131,3 @@ namespace Zenject
         }
     }
 }
-
-#endif
