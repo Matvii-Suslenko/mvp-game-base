@@ -11,7 +11,7 @@ namespace MvpBaseGame.Assets.Impl
         public IPromise<T> LoadAsset<T>(string assetUrl, bool asyncMode = true) where T : Object
         {
             var promise = new Promise<T>();
-            promise.Dispatch(AssetDatabase.LoadAssetAtPath<T>(assetUrl));;
+            promise.Dispatch(AssetDatabase.LoadAssetAtPath<T>(assetUrl));
             return promise;
         }
 

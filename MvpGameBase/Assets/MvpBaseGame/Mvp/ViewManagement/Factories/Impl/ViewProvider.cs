@@ -33,10 +33,10 @@ namespace MvpBaseGame.Mvp.ViewManagement.Factories.Impl
             var outcome = new Promise<IMutableManagedView>();
             var path = GetAssetPath(data.ViewDefinition);
 
-            _assetModel.LoadAsset<GameObject>(path, false)   //TODO: return to data.ViewDefinition.LayerId != LayerNames.Screen, after full refactoring
+            _assetModel.LoadAsset<GameObject>(path, false)
                 .Then(view =>
                 {
-                    var managedView = CreateInstance(view, transform, data);
+                    var managedView = CreateInstance(view, transform, data); //view is null
                     outcome.Dispatch(managedView);
                 })
                 .Progress(outcome.ReportProgress)

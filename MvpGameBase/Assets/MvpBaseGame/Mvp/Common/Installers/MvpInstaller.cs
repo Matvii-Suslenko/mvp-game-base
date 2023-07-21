@@ -7,14 +7,14 @@ namespace ProductMadness.CashmanCasino.Core.Installers
     public abstract class MvpInstaller : Installer
     {
         
-        //private readonly IPresenterBinder _presenterBinder; // TODO: uncomment after Presenter Binder Implemented
+        private readonly IPresenterBinder _presenterBinder;
         private readonly ICommandBinder _commandBinder;
 
         protected MvpInstaller(
-            //IPresenterBinder presenterBinder, // TODO: uncomment after Presenter Binder Implemented
+            IPresenterBinder presenterBinder,
             ICommandBinder commandBinder)
         {
-            //_presenterBinder = presenterBinder; // TODO: uncomment after Presenter Binder Implemented
+            _presenterBinder = presenterBinder;
             _commandBinder = commandBinder;
         }
         
@@ -23,7 +23,7 @@ namespace ProductMadness.CashmanCasino.Core.Installers
             BindCommon();
             BindServices();
             BindModels();
-            //indPresenters(_presenterBinder);
+            BindPresenters(_presenterBinder);
             BindCommands(_commandBinder);
         }
 

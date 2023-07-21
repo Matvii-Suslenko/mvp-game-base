@@ -1,15 +1,15 @@
-using MvpBaseGame.Assets.Impl;
+using MvpBaseGame.Mvp.ViewManagement.Presenters.Main;
 using ProductMadness.CashmanCasino.Core.Installers;
 using MvpBaseGame.Commands.Core;
-using MvpBaseGame.Utils.CoroutineRunner;
-using MvpBaseGame.Utils.CoroutineRunner.Impl;
-using UnityEngine;
+using MvpBaseGame.Assets.Impl;
 
 namespace MvpBaseGame.Mvp.Common.Installers
 {
     public class CoreMvpInstaller : MvpInstaller
     {
-        public CoreMvpInstaller(ICommandBinder commandBinder) : base(commandBinder)
+        public CoreMvpInstaller(
+            IPresenterBinder presenterBinder,
+            ICommandBinder commandBinder) : base(presenterBinder, commandBinder)
         {
         }
         

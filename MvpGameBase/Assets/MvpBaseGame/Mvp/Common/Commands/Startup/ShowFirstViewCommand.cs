@@ -4,18 +4,18 @@ using MvpBaseGame.Commands.Core.Impl;
 
 namespace MvpBaseGame.Mvp.Common.Commands.Startup
 {
-    public class ShowPreloaderCommand : AsyncCommand
+    public class ShowFirstViewCommand : AsyncCommand
     {
         private readonly IViewManager _viewManager;
 
-        public ShowPreloaderCommand(IViewManager viewManager)
+        public ShowFirstViewCommand(IViewManager viewManager)
         {
             _viewManager = viewManager;
         }
         
         protected override void Execute()
         {
-            _viewManager.OpenView(ViewNames.Preloader).ViewOpened.Then(Release);
+            _viewManager.OpenView(ViewNames.Lobby).ViewOpened.Then(Release);
         }
     }
 }
