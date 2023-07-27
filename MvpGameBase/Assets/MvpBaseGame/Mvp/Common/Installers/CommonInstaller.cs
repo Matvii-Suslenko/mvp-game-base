@@ -1,7 +1,7 @@
 using MvpBaseGame.Mvp.ViewManagement.Presenters.Main;
 using MvpBaseGame.Mvp.Common.Commands.Startup.Impl;
-using ProductMadness.CashmanCasino.Core.Installers;
 using MvpBaseGame.Mvp.Common.Views.PreloaderScreen;
+using MvpBaseGame.Mvp.Common.Views.SettingsPopup;
 using MvpBaseGame.Mvp.Common.Views.LobbyScreen;
 using MvpBaseGame.Mvp.Common.Commands.Startup;
 using MvpBaseGame.Commands.Core;
@@ -34,6 +34,7 @@ namespace MvpBaseGame.Mvp.Common.Installers
         {
             presenterBinder.BindView<PreloaderScreenView>().ToPresenter<PreloaderScreenPresenter>();
             presenterBinder.BindView<LobbyScreenView>().ToPresenter<LobbyScreenPresenter>();
+            presenterBinder.BindView<SettingsPopupView>().ToPresenter<SettingsPopupPresenter>();
         }
 
         protected override void BindCommands(ICommandBinder commandBinder)

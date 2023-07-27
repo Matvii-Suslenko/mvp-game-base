@@ -1,5 +1,4 @@
 using MvpBaseGame.Mvp.ViewManagement.Presenters.Main;
-using ProductMadness.CashmanCasino.Core.Installers;
 using MvpBaseGame.Commands.Core;
 using MvpBaseGame.Assets.Impl;
 

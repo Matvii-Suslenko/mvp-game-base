@@ -2,7 +2,7 @@ using MvpBaseGame.Mvp.ViewManagement.Presenters.Main;
 using MvpBaseGame.Commands.Core;
 using Zenject;
 
-namespace ProductMadness.CashmanCasino.Core.Installers
+namespace MvpBaseGame.Mvp.Common.Installers
 {
     public abstract class MvpInstaller : Installer
     {

@@ -1,11 +1,10 @@
 using System.Collections.Generic;
 using DG.Tweening;
 using MvpBaseGame.Mvp.ViewManagement.Data;
-using MvpBaseGame.Mvp.ViewManagement.Overlay;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace ProductMadness.CashmanCasino.Mvp.Views.Overlay
+namespace MvpBaseGame.Mvp.ViewManagement.Overlay.Impl
 {
     [RequireComponent(typeof(Canvas))]
     public class BlurOverlayView : MonoBehaviour, IBlurOverlayView

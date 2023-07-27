@@ -1,7 +1,7 @@
-using UnityEngine.Serialization;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-namespace ProductMadness.CashmanCasino.Mvp.Views.Overlay
+namespace MvpBaseGame.Mvp.ViewManagement.Overlay.Impl
 {
     public class AutoBlurOverlay : MonoBehaviour
     {

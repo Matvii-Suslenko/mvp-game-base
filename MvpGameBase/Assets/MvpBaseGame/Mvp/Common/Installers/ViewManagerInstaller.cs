@@ -8,9 +8,9 @@ using MvpBaseGame.Mvp.ViewManagement.Focus;
 using MvpBaseGame.Mvp.ViewManagement.Focus.Impl;
 using MvpBaseGame.Mvp.ViewManagement.History;
 using MvpBaseGame.Mvp.ViewManagement.History.Impl;
+using MvpBaseGame.Mvp.ViewManagement.Overlay.Impl;
 using MvpBaseGame.Utils.PrefabInstantiator;
 using MvpBaseGame.Utils.PrefabInstantiator.Impl;
-using ProductMadness.CashmanCasino.Mvp.Views.Overlay;
 using UnityEngine;
 using Zenject;
 

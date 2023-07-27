@@ -2,10 +2,9 @@ using System.Linq;
 using MvpBaseGame.Mvp.ViewManagement.Core;
 using MvpBaseGame.Mvp.ViewManagement.Data;
 using MvpBaseGame.Mvp.ViewManagement.Focus;
-using MvpBaseGame.Mvp.ViewManagement.Overlay;
 using Zenject;
 
-namespace ProductMadness.CashmanCasino.Mvp.Views.Overlay
+namespace MvpBaseGame.Mvp.ViewManagement.Overlay.Impl
 {
     public class BlurOverlayManager : IBlurOverlayManager, IInitializable
     {
