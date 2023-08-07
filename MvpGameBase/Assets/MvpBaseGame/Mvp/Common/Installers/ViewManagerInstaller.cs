@@ -11,6 +11,8 @@ using MvpBaseGame.Mvp.ViewManagement.History.Impl;
 using MvpBaseGame.Mvp.ViewManagement.Overlay.Impl;
 using MvpBaseGame.Utils.PrefabInstantiator;
 using MvpBaseGame.Utils.PrefabInstantiator.Impl;
+using MvpBaseGame.Utils.SceneLoader;
+using MvpBaseGame.Utils.SceneLoader.Impl;
 using UnityEngine;
 using Zenject;
 
@@ -33,6 +35,7 @@ namespace MvpBaseGame.Mvp.Common.Installers
             Container.Bind<IViewManager>().To<ViewManager>().AsSingle();
             Container.Bind<IViewProvider>().To<ViewProvider>().AsSingle();
             Container.BindInterfacesTo<BlurOverlayManager>().AsSingle().WithArguments(_blurOverlay);
+            Container.Bind<ISceneLoader>().To<SceneLoader>().AsSingle();
 
             var viewsContainer = new DiContainer();
             viewsContainer.Bind<IAssetsLoader>().FromMethod(_ => Container.Resolve<IAssetModel>());

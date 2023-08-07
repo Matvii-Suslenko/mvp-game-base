@@ -14,7 +14,7 @@ namespace MvpBaseGame.Mvp.Common.Commands.Startup
         {
             var mainFlow = new GroupCommandInfo(CommandGroupType.Sequence);
             mainFlow.Add<ShowPreloaderCommand>();
-            mainFlow.Add<WaitForSecondsCommand>(new WaitForSecondsCommandPayload(2));
+            mainFlow.Add<WaitForSecondsCommand>(new WaitForSecondsCommandPayload(1));
             mainFlow.Add<ShowFirstViewCommand>();
             
             groupCommandInfo.Add(mainFlow);
