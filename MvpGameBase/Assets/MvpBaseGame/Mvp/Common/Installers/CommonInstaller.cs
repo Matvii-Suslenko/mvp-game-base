@@ -35,6 +35,7 @@ namespace MvpBaseGame.Mvp.Common.Installers
             presenterBinder.BindView<PreloaderScreenView>().ToPresenter<PreloaderScreenPresenter>();
             presenterBinder.BindView<LobbyScreenView>().ToPresenter<LobbyScreenPresenter>();
             presenterBinder.BindView<SettingsPopupView>().ToPresenter<SettingsPopupPresenter>();
+            presenterBinder.BindView<PausedPopupView>().ToPresenter<PausedPopupPresenter>();
         }
 
         protected override void BindCommands(ICommandBinder commandBinder)

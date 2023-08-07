@@ -17,17 +17,26 @@ namespace MvpBaseGame.Mvp.Common.Views.LobbyScreen
 
         public override void Initialize()
         {
-            View.SettingsClicked += OnSettingsClicked;
+            View.SoundButtonClicked += OnSoundButtonClicked;
+            
+            // TODO remove after testing
+            View.DeviceBackClicked += OnDeviceBack;
         }
 
-        private void OnSettingsClicked()
+        // TODO remove after testing
+        private void OnDeviceBack()
         {
-            _viewManager.OpenView(ViewNames.Settings);
+            _viewManager.OpenView(ViewNames.Paused);
+        }
+
+        private void OnSoundButtonClicked()
+        {
+            
         }
 
         public override void Dispose()
         {
-            View.SettingsClicked -= OnSettingsClicked;
+            View.SoundButtonClicked -= OnSoundButtonClicked;
         }
     }
 }

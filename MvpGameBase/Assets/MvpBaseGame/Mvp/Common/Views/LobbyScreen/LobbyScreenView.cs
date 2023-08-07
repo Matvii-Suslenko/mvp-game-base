@@ -7,26 +7,26 @@ namespace MvpBaseGame.Mvp.Common.Views.LobbyScreen
 {
     public class LobbyScreenView : ScreenBaseView, ILobbyScreenView
     {
-        public event Action SettingsClicked;
+        public event Action SoundButtonClicked;
 
         [SerializeField]
-        protected Button _settingsButton;
+        protected Button _soundButton;
 
         protected override void Awake()
         {
             base.Awake();
-            _settingsButton.onClick.AddListener(OnSettingsClicked);
+            _soundButton.onClick.AddListener(OnSoundButtonClicked);
         }
 
-        private void OnSettingsClicked()
+        private void OnSoundButtonClicked()
         {
-            SettingsClicked?.Invoke();
+            SoundButtonClicked?.Invoke();
         }
 
         protected override void OnDestroy()
         {
             base.OnDestroy();
-            _settingsButton.onClick.RemoveListener(OnSettingsClicked);
+            _soundButton.onClick.RemoveListener(OnSoundButtonClicked);
         }
     }
 }

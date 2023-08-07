@@ -6,8 +6,8 @@ namespace MvpBaseGame.Mvp.Common.Views.LobbyScreen
     public interface ILobbyScreenView : IScreenBaseView
     {
         /// <summary>
-        /// Fires on Settings Button Clicked
+        /// Fires on Sound Button Clicked
         /// </summary>
-        event Action SettingsClicked;
+        event Action SoundButtonClicked;
     }
 }
