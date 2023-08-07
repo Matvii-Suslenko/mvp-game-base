@@ -27,6 +27,7 @@ namespace MvpBaseGame.Mvp.Common.Commands.Startup
 
         private void OnLoadFailed(Exception obj)
         {
+            // TODO: implement
             throw new NotImplementedException();
         }
 
