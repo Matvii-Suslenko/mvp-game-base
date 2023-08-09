@@ -1,3 +1,4 @@
+using GameInstaller = MvpBaseGame.Mvp.Game.GameInstaller;
 using MvpBaseGame.Mvp.ViewManagement.Presenters.Main;
 using MvpBaseGame.Commands.Core;
 using MvpBaseGame.Assets.Impl;
@@ -25,6 +26,7 @@ namespace MvpBaseGame.Mvp.Common.Installers
         private void AddFeatureInstallers()
         {
             Container.Install<CommonInstaller>();
+            Container.Install<GameInstaller>();
         }
     }
 }

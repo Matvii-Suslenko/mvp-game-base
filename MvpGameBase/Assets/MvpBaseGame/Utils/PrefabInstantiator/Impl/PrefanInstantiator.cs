@@ -1,7 +1,7 @@
-using System;
+using Object = UnityEngine.Object;
 using UnityEngine;
 using Zenject;
-using Object = UnityEngine.Object;
+using System;
 
 namespace MvpBaseGame.Utils.PrefabInstantiator.Impl
 {

@@ -1,27 +1,30 @@
 using MvpBaseGame.Mvp.ViewManagement.Presenters.Main.Impl;
 using MvpBaseGame.Mvp.ViewManagement.Core.Impl;
 using MvpBaseGame.Mvp.ViewManagement.Core;
+using MvpBaseGame.Mvp.Game.Services;
 
-namespace MvpBaseGame.Mvp.Common.Views.GameScreen
+namespace MvpBaseGame.Mvp.Game.Views.GameScreen
 {
     public class GameScreenPresenter : Presenter<IGameScreenView>
     {
+        private readonly IGameRunnerService _gameRunnerService;
         private readonly IViewManager _viewManager;
 
         public GameScreenPresenter(
-            IGameScreenView view,
-            IViewManager viewManager) : base(view)
+            IGameRunnerService gameRunnerService,
+            IViewManager viewManager,
+            IGameScreenView view) : base(view)
         {
+            _gameRunnerService = gameRunnerService;
             _viewManager = viewManager;
         }
 
         public override void Initialize()
         {
-            // TODO remove after testing
             View.DeviceBackClicked += OnDeviceBack;
+            _gameRunnerService.StartRun();
         }
-
-        // TODO remove after testing
+        
         private void OnDeviceBack()
         {
             _viewManager.OpenView(ViewNames.Paused);

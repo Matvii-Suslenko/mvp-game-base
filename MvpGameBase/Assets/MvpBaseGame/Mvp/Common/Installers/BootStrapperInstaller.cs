@@ -1,8 +1,7 @@
 using MvpBaseGame.Mvp.ViewManagement.Presenters;
-using MvpBaseGame.Commands;
-using MvpBaseGame.Utils.CoroutineRunner;
 using MvpBaseGame.Utils.CoroutineRunner.Impl;
-using UnityEngine;
+using MvpBaseGame.Utils.CoroutineRunner;
+using MvpBaseGame.Commands;
 using Zenject;
 
 namespace MvpBaseGame.Mvp.Common.Installers
@@ -12,8 +11,6 @@ namespace MvpBaseGame.Mvp.Common.Installers
         public override void InstallBindings()
         {
             Container.Bind<ICoroutineRunner>().FromInstance(new CoroutineRunner(this));
-            // Container.Install<ApplicationConfigInstaller>();
-            // Container.Install<CoreTechInstaller>();
             Container.Install<PresenterInstaller>();
             Container.Install<CommandInstaller>();
             Container.Install<CoreMvpInstaller>();
