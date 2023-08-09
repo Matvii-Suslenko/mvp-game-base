@@ -26,6 +26,13 @@ namespace MvpBaseGame.Mvp.Common.Views.LobbyScreen
             _playButton.onClick.AddListener(OnPlayButtonClicked);
         }
 
+        protected override void OnInteractableChanged(bool isInteractable)
+        {
+            base.OnInteractableChanged(isInteractable);
+            _soundButton.interactable = isInteractable;
+            _playButton.interactable = isInteractable;
+        }
+
         private void OnPlayButtonClicked()
         {
             PlayButtonClicked?.Invoke();

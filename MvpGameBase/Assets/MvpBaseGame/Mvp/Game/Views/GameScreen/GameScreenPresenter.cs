@@ -25,7 +25,8 @@ namespace MvpBaseGame.Mvp.Game.Views.GameScreen
 
         public override void Initialize()
         {
-            View.DeviceBackClicked += OnDeviceBackClicked;
+            View.PauseButtonClicked += PauseGameRun;
+            View.DeviceBackClicked += PauseGameRun;
             _unityLifecycle.Paused += OnPaused;
             _gameRunnerService.StartRun();
         }
@@ -34,11 +35,11 @@ namespace MvpBaseGame.Mvp.Game.Views.GameScreen
         {
             if (isPaused)
             {
-                OnDeviceBackClicked();
+                PauseGameRun();
             }
         }
 
-        private void OnDeviceBackClicked()
+        private void PauseGameRun()
         {
             _gameRunnerService.PauseRun();
             _viewManager.OpenView(ViewNames.Paused);
@@ -46,7 +47,8 @@ namespace MvpBaseGame.Mvp.Game.Views.GameScreen
 
         public override void Dispose()
         {
-            View.DeviceBackClicked -= OnDeviceBackClicked;
+            View.PauseButtonClicked -= PauseGameRun;
+            View.DeviceBackClicked -= PauseGameRun;
             _unityLifecycle.Paused -= OnPaused;
         }
     }

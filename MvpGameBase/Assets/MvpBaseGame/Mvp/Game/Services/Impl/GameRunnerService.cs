@@ -52,11 +52,23 @@ namespace MvpBaseGame.Mvp.Game.Services.Impl
         {
             if (!_isRunning || !_isPaused)
             {
+                _isPaused = false;
                 return;
             }
 
             _isPaused = false;
             _unityLifecycle.Updated += OnUpdated;
+        }
+        
+        public void StopRun()
+        {
+            if (!_isRunning)
+            {
+                return;
+            }
+
+            _isRunning = false;
+            _unityLifecycle.Updated -= OnUpdated;
         }
 
         public void Dispose()

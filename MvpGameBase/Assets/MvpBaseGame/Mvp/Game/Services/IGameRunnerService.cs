@@ -18,5 +18,10 @@ namespace MvpBaseGame.Mvp.Game.Services
         /// Resumes Game Run
         /// </summary>
         void ResumeRun();
+
+        /// <summary>
+        /// Stops Game Run
+        /// </summary>
+        void StopRun();
     }
 }
