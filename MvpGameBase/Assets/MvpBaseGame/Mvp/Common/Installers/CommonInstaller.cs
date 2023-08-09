@@ -3,6 +3,7 @@ using MvpBaseGame.Mvp.Common.Commands.Startup.Impl;
 using MvpBaseGame.Mvp.Common.Views.PreloaderScreen;
 using MvpBaseGame.Mvp.Common.Views.SettingsPopup;
 using MvpBaseGame.Mvp.Common.Views.LobbyScreen;
+using MvpBaseGame.Mvp.Common.Views.GameScreen;
 using MvpBaseGame.Mvp.Common.Commands.Startup;
 using MvpBaseGame.Commands.Core;
 
@@ -34,6 +35,7 @@ namespace MvpBaseGame.Mvp.Common.Installers
         {
             presenterBinder.BindView<PreloaderScreenView>().ToPresenter<PreloaderScreenPresenter>();
             presenterBinder.BindView<LobbyScreenView>().ToPresenter<LobbyScreenPresenter>();
+            presenterBinder.BindView<GameScreenView>().ToPresenter<GameScreenPresenter>();
             presenterBinder.BindView<SettingsPopupView>().ToPresenter<SettingsPopupPresenter>();
             presenterBinder.BindView<PausedPopupView>().ToPresenter<PausedPopupPresenter>();
         }

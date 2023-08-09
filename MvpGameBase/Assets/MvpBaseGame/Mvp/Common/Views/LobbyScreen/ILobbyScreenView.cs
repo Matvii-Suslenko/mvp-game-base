@@ -9,5 +9,10 @@ namespace MvpBaseGame.Mvp.Common.Views.LobbyScreen
         /// Fires on Sound Button Clicked
         /// </summary>
         event Action SoundButtonClicked;
+        
+        /// <summary>
+        /// Fires on Play Button Clicked
+        /// </summary>
+        event Action PlayButtonClicked;
     }
 }

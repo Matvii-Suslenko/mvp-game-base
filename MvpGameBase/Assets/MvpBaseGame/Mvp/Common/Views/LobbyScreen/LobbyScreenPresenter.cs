@@ -18,15 +18,12 @@ namespace MvpBaseGame.Mvp.Common.Views.LobbyScreen
         public override void Initialize()
         {
             View.SoundButtonClicked += OnSoundButtonClicked;
-            
-            // TODO remove after testing
-            View.DeviceBackClicked += OnDeviceBack;
+            View.PlayButtonClicked += OnPlayButtonClicked;
         }
 
-        // TODO remove after testing
-        private void OnDeviceBack()
+        private void OnPlayButtonClicked()
         {
-            _viewManager.OpenView(ViewNames.Paused);
+            _viewManager.OpenView(ViewNames.Game);
         }
 
         private void OnSoundButtonClicked()
@@ -37,6 +34,7 @@ namespace MvpBaseGame.Mvp.Common.Views.LobbyScreen
         public override void Dispose()
         {
             View.SoundButtonClicked -= OnSoundButtonClicked;
+            View.PlayButtonClicked -= OnPlayButtonClicked;
         }
     }
 }
