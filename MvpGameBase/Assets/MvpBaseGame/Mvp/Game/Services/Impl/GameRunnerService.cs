@@ -8,6 +8,7 @@ namespace MvpBaseGame.Mvp.Game.Services.Impl
         private const float ForwardSpeed = 15f;
         
         private bool _isRunning;
+        private bool _isPaused;
             
         private readonly IRunnerObjectsModel _runnerObjectsModel;
         private readonly IUnityLifecycle _unityLifecycle;
@@ -33,6 +34,28 @@ namespace MvpBaseGame.Mvp.Game.Services.Impl
             }
 
             _isRunning = true;
+            _unityLifecycle.Updated += OnUpdated;
+        }
+        
+        public void PauseRun()
+        {
+            if (!_isRunning || _isPaused)
+            {
+                return;
+            }
+
+            _isPaused = true;
+            _unityLifecycle.Updated -= OnUpdated;
+        }
+        
+        public void ResumeRun()
+        {
+            if (!_isRunning || !_isPaused)
+            {
+                return;
+            }
+
+            _isPaused = false;
             _unityLifecycle.Updated += OnUpdated;
         }
 

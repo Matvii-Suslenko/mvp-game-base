@@ -1,6 +1,6 @@
 using MvpBaseGame.Mvp.ViewManagement.Core;
 
-namespace MvpBaseGame.Mvp.Common.Views.SettingsPopup
+namespace MvpBaseGame.Mvp.Common.Views.PausedPopup
 {
     public interface IPausedPopupView : IPopupBaseView 
     {

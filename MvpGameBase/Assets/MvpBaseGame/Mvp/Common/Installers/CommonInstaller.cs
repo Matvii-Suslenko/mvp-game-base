@@ -3,6 +3,7 @@ using MvpBaseGame.Mvp.Common.Commands.Startup.Impl;
 using MvpBaseGame.Mvp.Common.Views.PreloaderScreen;
 using MvpBaseGame.Mvp.Common.Views.SettingsPopup;
 using MvpBaseGame.Mvp.Common.Views.LobbyScreen;
+using MvpBaseGame.Mvp.Common.Views.PausedPopup;
 using MvpBaseGame.Mvp.Common.Commands.Startup;
 using MvpBaseGame.Mvp.Common.Services;
 using MvpBaseGame.Mvp.Common.Helpers;

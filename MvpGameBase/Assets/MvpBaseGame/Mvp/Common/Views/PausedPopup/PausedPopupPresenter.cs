@@ -1,11 +1,17 @@
 using MvpBaseGame.Mvp.ViewManagement.Presenters.Main.Impl;
+using MvpBaseGame.Mvp.Game.Services;
 
-namespace MvpBaseGame.Mvp.Common.Views.SettingsPopup
+namespace MvpBaseGame.Mvp.Common.Views.PausedPopup
 {
     public class PausedPopupPresenter : Presenter<IPausedPopupView>
     {
-        public PausedPopupPresenter(IPausedPopupView view) : base(view)
+        private readonly IGameRunnerService _gameRunnerService;
+
+        public PausedPopupPresenter(
+            IGameRunnerService gameRunnerService,
+            IPausedPopupView view) : base(view)
         {
+            _gameRunnerService = gameRunnerService;
         }
 
         public override void Initialize()
@@ -15,6 +21,7 @@ namespace MvpBaseGame.Mvp.Common.Views.SettingsPopup
 
         private void OnCloseClicked()
         {
+            _gameRunnerService.ResumeRun();
             View.SetInteractable(false);
             View.CloseView();
         }
