@@ -17,7 +17,7 @@ namespace MvpBaseGame.Mvp.Common.Views.ConfirmationMessage
         public override void Initialize()
         {
             View.ConfirmClicked += OnConfirmClicked;
-            View.CancelClicked += OnCancelClicked;
+            View.CloseClicked += OnCancelClicked;
         }
 
         private void OnConfirmClicked()
@@ -35,7 +35,7 @@ namespace MvpBaseGame.Mvp.Common.Views.ConfirmationMessage
         public override void Dispose()
         {
             View.ConfirmClicked -= OnConfirmClicked;
-            View.CancelClicked -= OnCancelClicked;
+            View.CloseClicked -= OnCancelClicked;
         }
     }
 }

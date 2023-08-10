@@ -3,16 +3,11 @@ using System;
 
 namespace MvpBaseGame.Mvp.Common.Views.ConfirmationMessage
 {
-    public interface IConfirmationMessageView : IScreenBaseView
+    public interface IConfirmationMessageView : IPopupBaseView
     {
         /// <summary>
         /// Fires on Confirm Button Clicked
         /// </summary>
         event Action ConfirmClicked;
-        
-        /// <summary>
-        /// Fires on Cancel Button Clicked
-        /// </summary>
-        event Action CancelClicked;
     }
 }

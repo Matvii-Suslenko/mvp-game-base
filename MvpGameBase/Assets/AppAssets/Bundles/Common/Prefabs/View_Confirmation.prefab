@@ -622,8 +622,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72f5a04b133f4629a2c0b49d57b03051, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interactableOnFocusLoss: 0
+  _closeByBackButton: 1
+  CloseButton: {fileID: 3085437142329183857}
   _confirmButton: {fileID: 3233432807601241710}
-  _cancelButton: {fileID: 3085437142329183857}
 --- !u!114 &3909101802448998808
 MonoBehaviour:
   m_ObjectHideFlags: 0
