@@ -1,3 +1,4 @@
+using MvpBaseGame.Mvp.Common.Views.ConfirmationMessage;
 using MvpBaseGame.Mvp.ViewManagement.Presenters.Main;
 using MvpBaseGame.Mvp.Common.Commands.Startup.Impl;
 using MvpBaseGame.Mvp.Common.Views.PreloaderScreen;
@@ -39,6 +40,7 @@ namespace MvpBaseGame.Mvp.Common.Installers
             presenterBinder.BindView<LobbyScreenView>().ToPresenter<LobbyScreenPresenter>();
             presenterBinder.BindView<SettingsPopupView>().ToPresenter<SettingsPopupPresenter>();
             presenterBinder.BindView<PausedPopupView>().ToPresenter<PausedPopupPresenter>();
+            presenterBinder.BindView<ConfirmationMessageView>().ToPresenter<ConfirmationMessagePresenter>();
         }
 
         protected override void BindCommands(ICommandBinder commandBinder)
