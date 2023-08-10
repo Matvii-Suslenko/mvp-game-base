@@ -10,9 +10,13 @@ namespace MvpBaseGame.Mvp.ViewManagement.Core.Impl
     {
         public event Action DeviceBackClicked;
         public event Action<bool> FocusChanged;
+        
+        [SerializeField]
+        private bool _interactableOnFocusLoss = false;
+        
         protected IAssetsLoader AssetModel {get; private set;}
         protected IPrefabInstantiator PrefabInstantiator {get; private set;}
-
+        
         [Inject]
         private void Initialise(
             IAssetsLoader assetModel,
@@ -34,6 +38,11 @@ namespace MvpBaseGame.Mvp.ViewManagement.Core.Impl
         protected override void OnFocusChanged(bool hasFocus)
         {
             FocusChanged?.Invoke(hasFocus);
+
+            if (!_interactableOnFocusLoss)
+            {
+                SetInteractable(hasFocus);
+            }
         }
     }
 }
