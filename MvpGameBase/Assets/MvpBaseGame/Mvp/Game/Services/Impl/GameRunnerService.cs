@@ -67,6 +67,7 @@ namespace MvpBaseGame.Mvp.Game.Services.Impl
                 return;
             }
 
+            _isPaused = false;
             _isRunning = false;
             _unityLifecycle.Updated -= OnUpdated;
         }

@@ -1,23 +1,28 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using MvpBaseGame.Mvp.ViewManagement.Core;
 using MvpBaseGame.Mvp.ViewManagement.Data;
+using System.Collections.Generic;
+using System.Linq;
+using System;
 
 namespace MvpBaseGame.Mvp.ViewManagement.Focus.Impl
 {
     public class ViewLayerFocusHandler : IViewLayerFocusHandler
     {
         public event Action<IViewLayerInfo> FocusRefreshed;
-        
+        public bool IsCreatingViewInProgress { get; set; }
+
         private IEnumerable<IMutableViewLayer> _layers;
+        private IViewLayerInfo _lastFocusedLayer;
+        private bool _isFocusUpdateDisabled;
+        private bool _focusRefreshing;
+
+        
         public void SetLayers(IEnumerable<IMutableViewLayer> layers)
         {
             _layers = layers;
             
             foreach (var layer in _layers)
             {
-                layer.ViewAdded += OnViewAdded;
                 layer.AllViewsRemoved += OnAllViewsRemoved;
             }
 
@@ -26,17 +31,28 @@ namespace MvpBaseGame.Mvp.ViewManagement.Focus.Impl
 
         private void OnAllViewsRemoved()
         {
+            if (IsCreatingViewInProgress || _isFocusUpdateDisabled)
+            {
+                return;
+            }
+            
             RefreshFocus();
         }
 
-        private void OnViewAdded(IViewData viewData)
+        public void UnfocusAll()
         {
-            RefreshFocus();
+            foreach (var layer in _layers)
+            {
+                layer.SetFocus(false);
+            }
+            FocusRefreshed?.Invoke(null);
         }
 
-        private void RefreshFocus()
+        public void RefreshFocus()
         {
-            IViewLayerInfo focusedLayer = null;
+            var callEventsAtTheEnd = !_focusRefreshing;
+            _focusRefreshing = true;
+            var focusedLayerFound = false;
             foreach (var layer in _layers.Reverse())
             {
                 if (layer.LayerInfo.IsFocusIgnored)
@@ -44,18 +60,29 @@ namespace MvpBaseGame.Mvp.ViewManagement.Focus.Impl
                     continue;
                 }
                 
-                if (layer.HasView && focusedLayer == null)
+                if (layer.HasView && !focusedLayerFound)
                 {
+                    focusedLayerFound = true;
+                    _lastFocusedLayer = layer.LayerInfo;
                     layer.SetFocus(true);
-                    focusedLayer = layer.LayerInfo;
                 }
                 else
                 {
                     layer.SetFocus(false);
                 }
             }
-            
-            FocusRefreshed?.Invoke(focusedLayer);
+
+            if (callEventsAtTheEnd)
+            {
+                FocusRefreshed?.Invoke(_lastFocusedLayer);
+                _lastFocusedLayer = null;
+                _focusRefreshing = false;
+            }
+        }
+
+        public void DisableFocusUpdating(bool value)
+        {
+            _isFocusUpdateDisabled = value;
         }
     }
 }

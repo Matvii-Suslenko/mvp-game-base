@@ -29,7 +29,7 @@ namespace MvpBaseGame.Mvp.Common.Installers
         public override void InstallBindings()
         {
             Container.Bind<IViewLayersFactory>().FromMethod(GetLayerFactory);
-            Container.Bind<ICreateViewStrategy>().To<DefaultCreateViewStrategy>().AsSingle();
+            Container.Bind<ICreateViewStrategy>().To<CloseUpperViewsCreateViewStrategy>().AsSingle();
             Container.Bind<IViewLayerHistoryHandler>().To<ViewLayerHistoryHandler>().AsSingle();
             Container.Bind(typeof(IViewLayerFocusHandler)).To<ViewLayerFocusHandler>().AsSingle();
             Container.Bind<IViewManager>().To<ViewManager>().AsSingle();
