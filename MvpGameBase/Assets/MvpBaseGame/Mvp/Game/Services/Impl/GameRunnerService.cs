@@ -1,6 +1,10 @@
+using MvpBaseGame.Mvp.ViewManagement.Core.Impl;
+using MvpBaseGame.Mvp.ViewManagement.Core;
+using MvpBaseGame.Mvp.Game.Payloads.Impl;
 using MvpBaseGame.Mvp.Common.Services;
-using MvpBaseGame.Mvp.Game.Data;
+using MvpBaseGame.Mvp.Game.Data.Impl;
 using MvpBaseGame.Mvp.Game.Models;
+using MvpBaseGame.Mvp.Game.Data;
 using UnityEngine;
 
 namespace MvpBaseGame.Mvp.Game.Services.Impl
@@ -16,34 +20,44 @@ namespace MvpBaseGame.Mvp.Game.Services.Impl
         private const float HorizontalSpeedMultiplier = 0.05f;
         private const float RotationMultiplier = 0.15f;
         private const float ForwardSpeed = 0.05f;
+        
+        private const float HealthLoosingSpeed = 0.1f;
 
         private float _horizontalMovement;
+        private float _health = 1;
         private bool _isRunning;
         private bool _isPaused;
-            
+
+        private readonly Vector3 _startPencilPosition = new Vector3(12, 0, -22.95f);
         private readonly IRunnerObjectsModel _runnerObjectsModel;
         private readonly IUnityLifecycle _unityLifecycle;
+        private readonly IViewManager _viewManager;
 
         public GameRunnerService(
             IRunnerObjectsModel runnerObjectsModel,
-            IUnityLifecycle unityLifecycle)
+            IUnityLifecycle unityLifecycle,
+            IViewManager viewManager)
         {
             _runnerObjectsModel = runnerObjectsModel;
             _unityLifecycle = unityLifecycle;
+            _viewManager = viewManager;
         }
-        
-        // todo: base on health:
-        private float _health = 1;
-        
+
         private void OnUpdated(float deltaTime)
         {
             Pencil.Move(new Vector3(_horizontalMovement * HorizontalSpeedMultiplier, 0, ForwardSpeed));
             Pencil.Rotate(_horizontalMovement * RotationMultiplier);
+            Pencil.SetLength(_health);
+            
             _horizontalMovement = 0;
             
-            // todo: base on health
-            Pencil.SetLength(_health);
-            _health = Mathf.Clamp(_health - 0.1f * deltaTime, 0f, 1f);
+            _health = Mathf.Clamp(_health - HealthLoosingSpeed * deltaTime, 0f, 1f);
+
+            if (Mathf.Approximately(_health, 0))
+            {
+                PauseRun();
+                _viewManager.OpenView(ViewNames.Failed, new FinishGamePayload(FinishGameReason.NoHealth));
+            }
         }
 
         public void StartRun()
@@ -94,11 +108,20 @@ namespace MvpBaseGame.Mvp.Game.Services.Impl
             _isPaused = false;
             _isRunning = false;
             _unityLifecycle.Updated -= OnUpdated;
+            
+            _health = 1; // TODO: add recovering animation
+            Pencil.Rotate(0);
+            Pencil.SetLength(1);
         }
 
         public void MovePencil(float horizontalMovement)
         {
             _horizontalMovement = horizontalMovement;
+        }
+
+        public void ResetPencilPosition()
+        {
+            Pencil.SetPosition(_startPencilPosition);
         }
 
         public void Dispose()

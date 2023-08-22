@@ -42,6 +42,11 @@ namespace MvpBaseGame.Mvp.Game.Data.Impl
             _tipPart.localScale = new Vector3(1, 0.15f + tipLeft * 0.85f, 1);
         }
 
+        public void SetPosition(Vector3 position)
+        {
+            gameObject.transform.position = position;
+        }
+
         public void Move(Vector3 movement)
         {
             gameObject.transform.position += movement;

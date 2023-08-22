@@ -2,20 +2,27 @@ using MvpBaseGame.Mvp.Common.Views.ConfirmationMessage.Payload;
 using MvpBaseGame.Mvp.ViewManagement.Presenters.Main.Impl;
 using MvpBaseGame.Mvp.ViewManagement.Core.Impl;
 using MvpBaseGame.Mvp.ViewManagement.Core;
+using MvpBaseGame.Mvp.Game.Payloads.Impl;
+using MvpBaseGame.Mvp.Game.Data.Impl;
 using MvpBaseGame.Mvp.Game.Services;
+using MvpBaseGame.Mvp.Game.Commands;
+using MvpBaseGame.Commands.Core;
 
 namespace MvpBaseGame.Mvp.Common.Views.PausedPopup
 {
     public class PausedPopupPresenter : Presenter<IPausedPopupView>
     {
+        private readonly ICommandController _commandController;
         private readonly IGameRunnerService _gameRunnerService;
         private readonly IViewManager _viewManager;
 
         public PausedPopupPresenter(
+            ICommandController commandController,
             IGameRunnerService gameRunnerService,
             IViewManager viewManager,
             IPausedPopupView view) : base(view)
         {
+            _commandController = commandController;
             _gameRunnerService = gameRunnerService;
             _viewManager = viewManager;
         }
@@ -33,8 +40,7 @@ namespace MvpBaseGame.Mvp.Common.Views.PausedPopup
 
         private void ReturnToLobby()
         {
-            _gameRunnerService.StopRun();
-            _viewManager.OpenView(ViewNames.Lobby);
+            _commandController.Execute<IFinishGameCommand>(new FinishGamePayload(FinishGameReason.ExitRunClick));
         }
 
         private void OnCloseClicked()

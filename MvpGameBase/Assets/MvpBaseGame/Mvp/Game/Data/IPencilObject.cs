@@ -25,5 +25,11 @@ namespace MvpBaseGame.Mvp.Game.Data
         /// </summary>
         /// <param name="length"></param>
         void SetLength(float length);
+
+        /// <summary>
+        /// Sets Pencil Position
+        /// </summary>
+        /// <param name="position">Position</param>
+        void SetPosition(Vector3 position);
     }
 }

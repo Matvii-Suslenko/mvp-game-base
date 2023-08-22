@@ -29,5 +29,10 @@ namespace MvpBaseGame.Mvp.Game.Services
         /// </summary>
         /// <param name="horizontalMovement">Horizontal Movement Value</param>
         void MovePencil(float horizontalMovement);
+
+        /// <summary>
+        /// Resets Pencil Position
+        /// </summary>
+        void ResetPencilPosition();
     }
 }

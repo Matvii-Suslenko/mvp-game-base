@@ -1,8 +1,11 @@
 using MvpBaseGame.Mvp.ViewManagement.Presenters.Main;
+using MvpBaseGame.Mvp.Game.Views.FailedGamePopup;
 using MvpBaseGame.Mvp.Game.Views.GameScreen;
 using MvpBaseGame.Mvp.Game.Services.Impl;
+using MvpBaseGame.Mvp.Game.Commands.Impl;
 using MvpBaseGame.Mvp.Common.Installers;
 using MvpBaseGame.Mvp.Game.Models.Impl;
+using MvpBaseGame.Mvp.Game.Commands;
 using MvpBaseGame.Commands.Core;
 
 namespace MvpBaseGame.Mvp.Game
@@ -33,11 +36,12 @@ namespace MvpBaseGame.Mvp.Game
         protected override void BindPresenters(IPresenterBinder presenterBinder)
         {
             presenterBinder.BindView<GameScreenView>().ToPresenter<GameScreenPresenter>();
+            presenterBinder.BindView<FailedGamePopupView>().ToPresenter<FailedGamePopupPresenter>();
         }
 
         protected override void BindCommands(ICommandBinder commandBinder)
         {
-            
+            commandBinder.Bind<IFinishGameCommand>().ToCommand<FinishGameCommand>();
         }
     }
 }
