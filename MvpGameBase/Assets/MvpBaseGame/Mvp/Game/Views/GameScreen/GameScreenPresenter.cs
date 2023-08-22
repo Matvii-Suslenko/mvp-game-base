@@ -40,7 +40,7 @@ namespace MvpBaseGame.Mvp.Game.Views.GameScreen
 
         private void OnPaused(bool isPaused)
         {
-            if (isPaused)
+            if (isPaused && View.HasFocus)
             {
                 PauseGameRun();
             }

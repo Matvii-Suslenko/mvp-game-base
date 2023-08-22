@@ -11,8 +11,8 @@ namespace MvpBaseGame.Mvp.Game.Views.FailedGamePopup
         event Action FinishGameClicked;
         
         /// <summary>
-        /// Fires on Watch Add Button Clicked
+        /// Fires on Watch Ad Button Clicked
         /// </summary>
-        event Action WatchAddClicked;
+        event Action WatchAdClicked;
     }
 }

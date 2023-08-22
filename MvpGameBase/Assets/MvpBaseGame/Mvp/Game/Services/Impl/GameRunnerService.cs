@@ -21,7 +21,7 @@ namespace MvpBaseGame.Mvp.Game.Services.Impl
         private const float RotationMultiplier = 0.15f;
         private const float ForwardSpeed = 0.05f;
         
-        private const float HealthLoosingSpeed = 0.1f;
+        private const float HealthLoosingSpeed = 0.06f;
 
         private float _horizontalMovement;
         private float _health = 1;

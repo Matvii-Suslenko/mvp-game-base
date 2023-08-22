@@ -8,7 +8,7 @@ namespace MvpBaseGame.Mvp.Game.Views.FailedGamePopup
     public class FailedGamePopupView : ScreenBaseView, IFailedGamePopupView
     {
         public event Action FinishGameClicked;
-        public event Action WatchAddClicked;
+        public event Action WatchAdClicked;
         
         [SerializeField]
         protected Button _finishGameButton;
@@ -37,7 +37,7 @@ namespace MvpBaseGame.Mvp.Game.Views.FailedGamePopup
         
         private void OnWatchAddButtonClicked()
         {
-            WatchAddClicked?.Invoke();
+            WatchAdClicked?.Invoke();
         }
 
         protected override void OnDestroy()

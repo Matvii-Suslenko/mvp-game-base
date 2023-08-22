@@ -2,6 +2,7 @@ using GameInstaller = MvpBaseGame.Mvp.Game.GameInstaller;
 using MvpBaseGame.Mvp.ViewManagement.Presenters.Main;
 using MvpBaseGame.Commands.Core;
 using MvpBaseGame.Assets.Impl;
+using MvpBaseGame.Mvp.Features.Ads;
 
 namespace MvpBaseGame.Mvp.Common.Installers
 {
@@ -27,6 +28,7 @@ namespace MvpBaseGame.Mvp.Common.Installers
         {
             Container.Install<CommonInstaller>();
             Container.Install<GameInstaller>();
+            Container.Install<AdsInstaller>();
         }
     }
 }

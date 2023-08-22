@@ -24,10 +24,10 @@ namespace MvpBaseGame.Mvp.Game.Views.FailedGamePopup
         public override void Initialize()
         {
             View.FinishGameClicked += OnFinishGameClicked;
-            View.WatchAddClicked += OnWatchAddClicked;
+            View.WatchAdClicked += OnWatchAdClicked;
         }
 
-        private void OnWatchAddClicked()
+        private void OnWatchAdClicked()
         {
             // TODO: implement
             throw new NotImplementedException(); // TODO: delete System using
@@ -41,7 +41,7 @@ namespace MvpBaseGame.Mvp.Game.Views.FailedGamePopup
         public override void Dispose()
         {
             View.FinishGameClicked -= OnFinishGameClicked;
-            View.WatchAddClicked -= OnWatchAddClicked;
+            View.WatchAdClicked -= OnWatchAdClicked;
         }
     }
 }

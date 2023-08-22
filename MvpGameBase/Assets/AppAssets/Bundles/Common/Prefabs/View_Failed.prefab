@@ -361,7 +361,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Watch add to continue\n\ror finish the game"
+  m_Text: "Watch an ad to continue\n\ror finish the game"
 --- !u!1 &6979390473885572542
 GameObject:
   m_ObjectHideFlags: 0
@@ -375,7 +375,7 @@ GameObject:
   - component: {fileID: 1250400173813579979}
   - component: {fileID: 3233432807601241710}
   m_Layer: 5
-  m_Name: Watch Add Button
+  m_Name: Watch Ad Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -479,7 +479,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 1250400173813579979}
   m_OnClick:
     m_PersistentCalls:
@@ -563,7 +563,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: WATCH ADD
+  m_Text: WATCH AD
 --- !u!1 &8524008968814833177
 GameObject:
   m_ObjectHideFlags: 0
