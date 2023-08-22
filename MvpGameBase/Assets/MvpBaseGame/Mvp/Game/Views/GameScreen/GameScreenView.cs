@@ -3,6 +3,7 @@ using MvpBaseGame.Mvp.ViewManagement.Core.Impl;
 using UnityEngine.UI;
 using UnityEngine;
 using System;
+using UnityEngine.Serialization;
 
 namespace MvpBaseGame.Mvp.Game.Views.GameScreen
 {
@@ -19,15 +20,15 @@ namespace MvpBaseGame.Mvp.Game.Views.GameScreen
         [SerializeField]
         protected Button _pauseButton;
 
-        [SerializeField]
-        protected OneDimensionalDragZone _dragZone;
+        [FormerlySerializedAs("_dragZone")] [SerializeField]
+        protected OneDimensionalJoystickArea joystickArea;
 
         protected override void Awake()
         {
             base.Awake();
             _soundButton.onClick.AddListener(OnSoundButtonClicked);
             _pauseButton.onClick.AddListener(OnPauseButtonClicked);
-            _dragZone.Drag += OnDrag;
+            joystickArea.Drag += OnDrag;
         }
 
         private void OnDrag(float dragValue)
@@ -56,7 +57,7 @@ namespace MvpBaseGame.Mvp.Game.Views.GameScreen
             base.OnDestroy();
             _soundButton.onClick.RemoveListener(OnSoundButtonClicked);
             _pauseButton.onClick.RemoveListener(OnPauseButtonClicked);
-            _dragZone.Drag -= OnDrag;
+            joystickArea.Drag -= OnDrag;
         }
     }
 }

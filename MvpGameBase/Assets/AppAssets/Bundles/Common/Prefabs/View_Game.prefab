@@ -334,6 +334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fd021d7e6c64f98bc992ac4111fd80b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _maxOffset: 300
   _axis: 0
 --- !u!1 &6746798152267980144
 GameObject:
@@ -599,7 +600,7 @@ MonoBehaviour:
   _interactableOnFocusLoss: 0
   _soundButton: {fileID: 7380154922313365063}
   _pauseButton: {fileID: 9071932595550939649}
-  _dragZone: {fileID: 3948204344146156045}
+  joystickArea: {fileID: 3948204344146156045}
 --- !u!95 &7788305524400014305
 Animator:
   serializedVersion: 5

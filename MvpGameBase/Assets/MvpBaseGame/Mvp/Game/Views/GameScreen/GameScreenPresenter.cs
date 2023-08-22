@@ -33,9 +33,9 @@ namespace MvpBaseGame.Mvp.Game.Views.GameScreen
             _gameRunnerService.StartRun();
         }
 
-        private void OnDrag(float dragValue)
+        private void OnDrag(float input)
         {
-            _gameRunnerService.MovePencil(dragValue);
+            _gameRunnerService.MovePencil(input);
         }
 
         private void OnPaused(bool isPaused)

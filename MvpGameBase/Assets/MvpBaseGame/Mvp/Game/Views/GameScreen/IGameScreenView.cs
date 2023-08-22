@@ -4,7 +4,7 @@ using System;
 
 namespace MvpBaseGame.Mvp.Game.Views.GameScreen
 {
-    public interface IGameScreenView : IScreenBaseView, IOneDimensionalDragZone
+    public interface IGameScreenView : IScreenBaseView, IOneDimensionalJoystickArea
     {
         /// <summary>
         /// Fires on Sound Button Clicked

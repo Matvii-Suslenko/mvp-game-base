@@ -2,7 +2,7 @@ using System;
 
 namespace MvpBaseGame.Mvp.Common.Components.DragZone
 {
-    public interface IOneDimensionalDragZone
+    public interface IOneDimensionalJoystickArea
     {
         /// <summary>
         /// Fires on Drag
