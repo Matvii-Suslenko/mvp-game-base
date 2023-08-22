@@ -561,6 +561,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1328760412}
   - component: {fileID: 1328760413}
+  - component: {fileID: 1328760414}
   m_Layer: 3
   m_Name: Trail
   m_TagString: Untagged
@@ -575,12 +576,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1328760411}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.002, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.000000003958121, w: 1}
+  m_LocalPosition: {x: -0, y: 0.6, z: 0}
+  m_LocalScale: {x: 309.99997, y: 310, z: 310}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3044204739679137405}
+  m_Father: {fileID: 2042944406}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!96 &1328760413
@@ -634,9 +635,18 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.4006109
-        inSlope: 0
-        outSlope: 0
+        value: 0
+        inSlope: 12.635514
+        outSlope: 12.635514
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.42925143
+      - serializedVersion: 3
+        time: 0.011747152
+        value: 0.39754477
+        inSlope: -0.11765707
+        outSlope: -0.11765707
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
@@ -691,6 +701,19 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!114 &1328760414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1328760411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e55a19713255490c8a1f10397f824be4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _referenceObject: {fileID: 3044204739679137405}
 --- !u!1 &1657868848
 GameObject:
   m_ObjectHideFlags: 0
@@ -869,6 +892,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2042944406}
+  - component: {fileID: 2042944407}
   m_Layer: 0
   m_Name: Pensil
   m_TagString: Pencil
@@ -890,9 +914,23 @@ Transform:
   m_Children:
   - {fileID: 543450651854917421}
   - {fileID: 1657868851}
+  - {fileID: 1328760412}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 5, y: -30, z: -15}
+--- !u!114 &2042944407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2042944405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c718f1374ed346a29bb1be836a109320, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pencilModel: {fileID: 919132147652236695}
 --- !u!23 &117117090850814326
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1147,7 +1185,6 @@ Transform:
   m_Children:
   - {fileID: 4722238139227778273}
   - {fileID: 5085038211051513935}
-  - {fileID: 1328760412}
   m_Father: {fileID: 543450651854917421}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

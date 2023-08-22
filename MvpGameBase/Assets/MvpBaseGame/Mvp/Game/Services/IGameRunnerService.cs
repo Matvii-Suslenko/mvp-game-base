@@ -23,5 +23,11 @@ namespace MvpBaseGame.Mvp.Game.Services
         /// Stops Game Run
         /// </summary>
         void StopRun();
+
+        /// <summary>
+        /// Moves Pencil
+        /// </summary>
+        /// <param name="horizontalMovement">Horizontal Movement Value</param>
+        void MovePencil(float horizontalMovement);
     }
 }

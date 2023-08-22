@@ -1,9 +1,10 @@
+using MvpBaseGame.Mvp.Common.Components.DragZone;
 using MvpBaseGame.Mvp.ViewManagement.Core;
 using System;
 
 namespace MvpBaseGame.Mvp.Game.Views.GameScreen
 {
-    public interface IGameScreenView : IScreenBaseView
+    public interface IGameScreenView : IScreenBaseView, IOneDimensionalDragZone
     {
         /// <summary>
         /// Fires on Sound Button Clicked

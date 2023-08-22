@@ -1,12 +1,20 @@
 using MvpBaseGame.Mvp.Common.Services;
 using MvpBaseGame.Mvp.Game.Models;
+using UnityEngine;
 
 namespace MvpBaseGame.Mvp.Game.Services.Impl
 {
     public class GameRunnerService : IGameRunnerService
     {
-        private const float ForwardSpeed = 15f;
+        private const float PencilRotationFading = 0.05f;
+        private const float MinimumPencilRotation = -30f;
+        private const float MaximumPencilRotation = 30f;
         
+        private const float HorizontalSpeedMultiplier = 0.02f;
+        private const float RotationMultiplier = 0.1f;
+        private const float ForwardSpeed = 15f;
+
+        private float _horizontalMovement;
         private bool _isRunning;
         private bool _isPaused;
             
@@ -23,7 +31,9 @@ namespace MvpBaseGame.Mvp.Game.Services.Impl
         
         private void OnUpdated(float deltaTime)
         {
-            _runnerObjectsModel.Pencil.MoveForward(deltaTime * ForwardSpeed);
+            _runnerObjectsModel.Pencil.Move(new Vector3(_horizontalMovement * HorizontalSpeedMultiplier, 0, ForwardSpeed * deltaTime));
+            _runnerObjectsModel.Pencil.Rotate(_horizontalMovement * RotationMultiplier);
+            _horizontalMovement = 0;
         }
 
         public void StartRun()
@@ -32,6 +42,10 @@ namespace MvpBaseGame.Mvp.Game.Services.Impl
             {
                 return;
             }
+
+            _runnerObjectsModel.Pencil.RotationFading = PencilRotationFading;
+            _runnerObjectsModel.Pencil.MinimumRotation = MinimumPencilRotation;
+            _runnerObjectsModel.Pencil.MaximumRotation = MaximumPencilRotation;
 
             _isRunning = true;
             _unityLifecycle.Updated += OnUpdated;
@@ -70,6 +84,11 @@ namespace MvpBaseGame.Mvp.Game.Services.Impl
             _isPaused = false;
             _isRunning = false;
             _unityLifecycle.Updated -= OnUpdated;
+        }
+
+        public void MovePencil(float horizontalMovement)
+        {
+            _horizontalMovement += horizontalMovement;
         }
 
         public void Dispose()

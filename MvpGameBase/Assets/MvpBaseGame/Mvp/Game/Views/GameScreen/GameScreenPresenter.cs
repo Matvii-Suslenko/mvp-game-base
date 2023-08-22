@@ -28,7 +28,14 @@ namespace MvpBaseGame.Mvp.Game.Views.GameScreen
             View.PauseButtonClicked += PauseGameRun;
             View.DeviceBackClicked += PauseGameRun;
             _unityLifecycle.Paused += OnPaused;
+            View.Drag += OnDrag;
+            
             _gameRunnerService.StartRun();
+        }
+
+        private void OnDrag(float dragValue)
+        {
+            _gameRunnerService.MovePencil(dragValue);
         }
 
         private void OnPaused(bool isPaused)
@@ -50,6 +57,7 @@ namespace MvpBaseGame.Mvp.Game.Views.GameScreen
             View.PauseButtonClicked -= PauseGameRun;
             View.DeviceBackClicked -= PauseGameRun;
             _unityLifecycle.Paused -= OnPaused;
+            View.Drag -= OnDrag;
         }
     }
 }

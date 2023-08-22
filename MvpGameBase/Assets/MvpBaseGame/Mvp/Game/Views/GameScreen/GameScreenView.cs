@@ -1,3 +1,4 @@
+using MvpBaseGame.Mvp.Common.Components.DragZone.Impl;
 using MvpBaseGame.Mvp.ViewManagement.Core.Impl;
 using UnityEngine.UI;
 using UnityEngine;
@@ -7,6 +8,8 @@ namespace MvpBaseGame.Mvp.Game.Views.GameScreen
 {
     public class GameScreenView : ScreenBaseView, IGameScreenView
     {
+        public event Action<float> Drag;
+        
         public event Action SoundButtonClicked;
         public event Action PauseButtonClicked;
         
@@ -16,11 +19,20 @@ namespace MvpBaseGame.Mvp.Game.Views.GameScreen
         [SerializeField]
         protected Button _pauseButton;
 
+        [SerializeField]
+        protected OneDimensionalDragZone _dragZone;
+
         protected override void Awake()
         {
             base.Awake();
             _soundButton.onClick.AddListener(OnSoundButtonClicked);
             _pauseButton.onClick.AddListener(OnPauseButtonClicked);
+            _dragZone.Drag += OnDrag;
+        }
+
+        private void OnDrag(float dragValue)
+        {
+            Drag?.Invoke(dragValue);
         }
 
         protected override void OnInteractableChanged(bool isInteractable)
@@ -44,6 +56,7 @@ namespace MvpBaseGame.Mvp.Game.Views.GameScreen
             base.OnDestroy();
             _soundButton.onClick.RemoveListener(OnSoundButtonClicked);
             _pauseButton.onClick.RemoveListener(OnPauseButtonClicked);
+            _dragZone.Drag -= OnDrag;
         }
     }
 }

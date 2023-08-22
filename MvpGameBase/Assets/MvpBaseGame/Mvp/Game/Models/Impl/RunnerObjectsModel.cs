@@ -1,14 +1,12 @@
-using MvpBaseGame.Mvp.Game.Data.Impl;
 using MvpBaseGame.Mvp.Game.Data;
+using UnityEngine;
 
 namespace MvpBaseGame.Mvp.Game.Models.Impl
 {
     public class RunnerObjectsModel : IRunnerObjectsModel
     {
-        public IUnityObject Pencil => _pencil ??= UnityObject.WithTag("Pencil");
-        public IUnityObject Camera => _camera ??= UnityObject.WithTag("MainCamera");
+        public IPencilObject Pencil => _pencil ??= GameObject.FindWithTag("Pencil").GetComponent<IPencilObject>();
     
-        private IUnityObject _pencil;
-        private IUnityObject _camera;
+        private IPencilObject _pencil;
     }
 }

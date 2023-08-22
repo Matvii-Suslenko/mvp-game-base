@@ -7,11 +7,6 @@ namespace MvpBaseGame.Mvp.Game.Models
         /// <summary>
         /// Pencil Object
         /// </summary>
-        IUnityObject Pencil { get; }
-        
-        /// <summary>
-        /// Camera Object
-        /// </summary>
-        IUnityObject Camera { get; }
+        IPencilObject Pencil { get; }
     }
 }
