@@ -1,4 +1,5 @@
 using MvpBaseGame.Mvp.Common.Services;
+using MvpBaseGame.Mvp.Game.Data;
 using MvpBaseGame.Mvp.Game.Models;
 using UnityEngine;
 
@@ -6,6 +7,8 @@ namespace MvpBaseGame.Mvp.Game.Services.Impl
 {
     public class GameRunnerService : IGameRunnerService
     {
+        private IPencilObject Pencil => _runnerObjectsModel.Pencil;
+        
         private const float PencilRotationFading = 0.05f;
         private const float MinimumPencilRotation = -30f;
         private const float MaximumPencilRotation = 30f;
@@ -29,11 +32,18 @@ namespace MvpBaseGame.Mvp.Game.Services.Impl
             _unityLifecycle = unityLifecycle;
         }
         
+        // todo: base on health:
+        private float _health = 1;
+        
         private void OnUpdated(float deltaTime)
         {
-            _runnerObjectsModel.Pencil.Move(new Vector3(_horizontalMovement * HorizontalSpeedMultiplier, 0, ForwardSpeed));
-            _runnerObjectsModel.Pencil.Rotate(_horizontalMovement * RotationMultiplier);
+            Pencil.Move(new Vector3(_horizontalMovement * HorizontalSpeedMultiplier, 0, ForwardSpeed));
+            Pencil.Rotate(_horizontalMovement * RotationMultiplier);
             _horizontalMovement = 0;
+            
+            // todo: base on health
+            Pencil.SetLength(_health);
+            _health = Mathf.Clamp(_health - 0.1f * deltaTime, 0f, 1f);
         }
 
         public void StartRun()
@@ -88,7 +98,7 @@ namespace MvpBaseGame.Mvp.Game.Services.Impl
 
         public void MovePencil(float horizontalMovement)
         {
-            _horizontalMovement += horizontalMovement;
+            _horizontalMovement = horizontalMovement;
         }
 
         public void Dispose()

@@ -931,6 +931,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pencilModel: {fileID: 919132147652236695}
+  _mainScalablePart: {fileID: 6833311125821241546}
+  _tailPart: {fileID: 6991261114741593556}
+  _tipPart: {fileID: 3044204739679137405}
 --- !u!23 &117117090850814326
 MeshRenderer:
   m_ObjectHideFlags: 0

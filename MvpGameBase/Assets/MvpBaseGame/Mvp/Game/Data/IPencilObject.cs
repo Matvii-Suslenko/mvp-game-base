@@ -19,5 +19,11 @@ namespace MvpBaseGame.Mvp.Game.Data
         /// </summary>
         /// <param name="angles">Angles to Rotate</param>
         void Rotate(float angles);
+
+        /// <summary>
+        /// Sets Pencil Length
+        /// </summary>
+        /// <param name="length"></param>
+        void SetLength(float length);
     }
 }
