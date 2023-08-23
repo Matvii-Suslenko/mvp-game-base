@@ -13,13 +13,13 @@ namespace MvpBaseGame.Mvp.Game.Services.Impl
     {
         private IPencilObject Pencil => _runnerObjectsModel.Pencil;
         
-        private const float PencilRotationFading = 0.05f;
         private const float MinimumPencilRotation = -30f;
         private const float MaximumPencilRotation = 30f;
+        private const float PencilRotationFading = 45f;
         
-        private const float HorizontalSpeedMultiplier = 15f;
+        private const float HorizontalSpeedMultiplier = 25f;
         private const float RotationMultiplier = 70;
-        private const float ForwardSpeed = 0.05f;
+        private const float ForwardSpeed = 30f;
         
         private const float HealthLoosingSpeed = 0.06f;
 
@@ -28,7 +28,7 @@ namespace MvpBaseGame.Mvp.Game.Services.Impl
         private bool _isRunning;
         private bool _isPaused;
 
-        private readonly Vector3 _startPencilPosition = new Vector3(12, 0, -22.95f);
+        private readonly Vector3 _startPencilPosition = new (12, 0, -22.95f);
         private readonly IRunnerObjectsModel _runnerObjectsModel;
         private readonly IUnityLifecycle _unityLifecycle;
         private readonly IViewManager _viewManager;
@@ -45,7 +45,7 @@ namespace MvpBaseGame.Mvp.Game.Services.Impl
 
         private void OnUpdated(float deltaTime)
         {
-            Pencil.Move(new Vector3(_horizontalMovement * HorizontalSpeedMultiplier * deltaTime, 0, ForwardSpeed));
+            Pencil.Move(new Vector3(_horizontalMovement * HorizontalSpeedMultiplier * deltaTime, 0, ForwardSpeed * deltaTime));
             Pencil.Rotate(_horizontalMovement * RotationMultiplier * deltaTime);
             Pencil.SetLength(_health);
             

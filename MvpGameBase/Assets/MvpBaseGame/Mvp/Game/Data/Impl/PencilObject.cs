@@ -55,14 +55,15 @@ namespace MvpBaseGame.Mvp.Game.Data.Impl
         private void Update()
         {
             _pencilModel.transform.localRotation = Quaternion.Euler(0, 0, _anglesAim);
+            var fadingOnTime = RotationFading *Time.deltaTime;
 
-            if (_anglesAim < -RotationFading)
+            if (_anglesAim < -fadingOnTime)
             {
-                _anglesAim += RotationFading;
+                _anglesAim += fadingOnTime;
             }
-            else if (_anglesAim > RotationFading)
+            else if (_anglesAim > fadingOnTime)
             {
-                _anglesAim -= RotationFading;
+                _anglesAim -= fadingOnTime;
             }
         }
     }

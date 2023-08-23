@@ -6,8 +6,8 @@ namespace MvpBaseGame.Mvp.Common.Components.DragZone.Impl
 {
     public class OneDimensionalJoystickArea : MonoBehaviour, IOneDimensionalJoystickArea, IPointerDownHandler, IPointerUpHandler, IPointerMoveHandler
     {
-        private const float DragValueMultiplier = 1000f;
-        private const float IndicatorStepOffset = 100f;
+        private const float DragValueMultiplier = 3f;
+        private const float IndicatorStepOffset = 120f;
             
         public event Action<float> Drag;
         
@@ -29,7 +29,7 @@ namespace MvpBaseGame.Mvp.Common.Components.DragZone.Impl
         private Camera _camera;
         private bool _isDrag;
         
-        private readonly float _maxOffset = Screen.width / 4f;
+        private readonly float _maxOffset = Screen.width / 3f;
 
         private void Start()
         {
@@ -63,7 +63,7 @@ namespace MvpBaseGame.Mvp.Common.Components.DragZone.Impl
                 input > _maxOffset ? 1 : input / _maxOffset : 
                 input < -_maxOffset ? -1 : input / _maxOffset;
 
-            Drag?.Invoke(dragValue * Time.deltaTime * DragValueMultiplier);
+            Drag?.Invoke(dragValue * DragValueMultiplier);
             
             for (var i = 0; i < _joystickInputIndicators.Length; i++)
             {
