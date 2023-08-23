@@ -36,7 +36,7 @@ namespace MvpBaseGame.Mvp.ViewManagement.Factories.Impl
             _assetModel.LoadAsset<GameObject>(path, false)
                 .Then(view =>
                 {
-                    var managedView = CreateInstance(view, transform, data); //view is null
+                    var managedView = CreateInstance(view, transform, data);
                     outcome.Dispatch(managedView);
                 })
                 .Progress(outcome.ReportProgress)

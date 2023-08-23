@@ -1,7 +1,6 @@
 using System.Collections.Generic;
-using MvpBaseGame.Promises;
 using MvpBaseGame.Promises.Impl;
-using UnityEditor;
+using MvpBaseGame.Promises;
 using UnityEngine;
 
 namespace MvpBaseGame.Assets.Impl
@@ -11,7 +10,7 @@ namespace MvpBaseGame.Assets.Impl
         public IPromise<T> LoadAsset<T>(string assetUrl, bool asyncMode = true) where T : Object
         {
             var promise = new Promise<T>();
-            promise.Dispatch(AssetDatabase.LoadAssetAtPath<T>(assetUrl));
+            promise.Dispatch(Resources.Load<T>(assetUrl));
             return promise;
         }
 
