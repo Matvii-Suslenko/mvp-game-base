@@ -17,8 +17,8 @@ namespace MvpBaseGame.Mvp.Game.Services.Impl
         private const float MinimumPencilRotation = -30f;
         private const float MaximumPencilRotation = 30f;
         
-        private const float HorizontalSpeedMultiplier = 0.05f;
-        private const float RotationMultiplier = 0.15f;
+        private const float HorizontalSpeedMultiplier = 15f;
+        private const float RotationMultiplier = 70;
         private const float ForwardSpeed = 0.05f;
         
         private const float HealthLoosingSpeed = 0.06f;
@@ -45,8 +45,8 @@ namespace MvpBaseGame.Mvp.Game.Services.Impl
 
         private void OnUpdated(float deltaTime)
         {
-            Pencil.Move(new Vector3(_horizontalMovement * HorizontalSpeedMultiplier, 0, ForwardSpeed));
-            Pencil.Rotate(_horizontalMovement * RotationMultiplier);
+            Pencil.Move(new Vector3(_horizontalMovement * HorizontalSpeedMultiplier * deltaTime, 0, ForwardSpeed));
+            Pencil.Rotate(_horizontalMovement * RotationMultiplier * deltaTime);
             Pencil.SetLength(_health);
             
             _horizontalMovement = 0;
