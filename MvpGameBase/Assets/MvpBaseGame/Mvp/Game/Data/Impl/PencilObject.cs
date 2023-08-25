@@ -1,12 +1,23 @@
+using MvpBaseGame.Mvp.Game.Components;
 using UnityEngine;
+using System;
 
 namespace MvpBaseGame.Mvp.Game.Data.Impl
 {
     public class PencilObject : MonoBehaviour, IPencilObject
     {
+        public event Action NewTaskFound;
+        
         public float RotationFading { private get; set; }
         public float MinimumRotation { private get; set; }
         public float MaximumRotation { private get; set; }
+        public bool IsGrounded => _controller.isGrounded;
+
+        [SerializeField]
+        private CharacterController _controller;
+        
+        [SerializeField]
+        private TrailRenderer _trailRenderer;
         
         [SerializeField]
         private GameObject _pencilModel;
@@ -49,7 +60,7 @@ namespace MvpBaseGame.Mvp.Game.Data.Impl
 
         public void Move(Vector3 movement)
         {
-            gameObject.transform.position += movement;
+            _controller.Move(movement);
         }
 
         private void Update()
@@ -64,6 +75,23 @@ namespace MvpBaseGame.Mvp.Game.Data.Impl
             else if (_anglesAim > fadingOnTime)
             {
                 _anglesAim -= fadingOnTime;
+            }
+
+            _trailRenderer.emitting = _controller.isGrounded;
+        }
+
+        private void OnControllerColliderHit(ControllerColliderHit hit)
+        {
+            switch (hit.gameObject.tag)
+            {
+                case"Task":
+                    var taskSticker = hit.gameObject.GetComponent<ITaskSticker>();
+                    if (taskSticker is { IsSeen: false })
+                    {
+                        NewTaskFound?.Invoke();
+                        taskSticker.SetIsSeen();
+                    }
+                    break;
             }
         }
     }

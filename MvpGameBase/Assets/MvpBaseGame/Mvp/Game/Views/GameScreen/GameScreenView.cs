@@ -1,9 +1,9 @@
 using MvpBaseGame.Mvp.Common.Components.DragZone.Impl;
 using MvpBaseGame.Mvp.ViewManagement.Core.Impl;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using UnityEngine;
 using System;
-using UnityEngine.Serialization;
 
 namespace MvpBaseGame.Mvp.Game.Views.GameScreen
 {

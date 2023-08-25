@@ -1,6 +1,7 @@
 using MvpBaseGame.Mvp.ViewManagement.Presenters.Main;
 using MvpBaseGame.Mvp.Game.Views.FailedGamePopup;
 using MvpBaseGame.Mvp.Game.Views.GameScreen;
+using MvpBaseGame.Mvp.Game.Views.TaskPopup;
 using MvpBaseGame.Mvp.Game.Services.Impl;
 using MvpBaseGame.Mvp.Game.Commands.Impl;
 using MvpBaseGame.Mvp.Common.Installers;
@@ -36,6 +37,7 @@ namespace MvpBaseGame.Mvp.Game
         protected override void BindPresenters(IPresenterBinder presenterBinder)
         {
             presenterBinder.BindView<GameScreenView>().ToPresenter<GameScreenPresenter>();
+            presenterBinder.BindView<TaskPopupView>().ToPresenter<TaskPopupPresenter>();
             presenterBinder.BindView<FailedGamePopupView>().ToPresenter<FailedGamePopupPresenter>();
         }
 

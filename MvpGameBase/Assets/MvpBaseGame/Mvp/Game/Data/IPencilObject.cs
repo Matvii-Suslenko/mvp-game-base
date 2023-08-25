@@ -1,12 +1,19 @@
 using UnityEngine;
+using System;
 
 namespace MvpBaseGame.Mvp.Game.Data
 {
     public interface IPencilObject
     {
+        /// <summary>
+        /// Fires on New Task Found
+        /// </summary>
+        event Action NewTaskFound;
+        
         float RotationFading { set; }
         float MinimumRotation { set; }
         float MaximumRotation { set; }
+        bool IsGrounded { get; }
         
         /// <summary>
         /// Moves Pencil

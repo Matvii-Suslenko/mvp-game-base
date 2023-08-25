@@ -13,6 +13,8 @@ namespace MvpBaseGame.Mvp.Game.Services.Impl
     {
         private IPencilObject Pencil => _runnerObjectsModel.Pencil;
         
+        private const float Gravity = -0.02f;
+        
         private const float MinimumPencilRotation = -30f;
         private const float MaximumPencilRotation = 30f;
         private const float PencilRotationFading = 45f;
@@ -21,7 +23,7 @@ namespace MvpBaseGame.Mvp.Game.Services.Impl
         private const float RotationMultiplier = 70;
         private const float ForwardSpeed = 30f;
         
-        private const float HealthLoosingSpeed = 0.06f;
+        private const float HealthLoosingSpeed = 0.05f;
 
         private float _horizontalMovement;
         private float _health = 1;
@@ -45,14 +47,19 @@ namespace MvpBaseGame.Mvp.Game.Services.Impl
 
         private void OnUpdated(float deltaTime)
         {
-            Pencil.Move(new Vector3(_horizontalMovement * HorizontalSpeedMultiplier * deltaTime, 0, ForwardSpeed * deltaTime));
+            Pencil.Move(new Vector3(_horizontalMovement * HorizontalSpeedMultiplier * deltaTime, Gravity, ForwardSpeed * deltaTime));
             Pencil.Rotate(_horizontalMovement * RotationMultiplier * deltaTime);
             Pencil.SetLength(_health);
             
             _horizontalMovement = 0;
+
+            if (!Pencil.IsGrounded)
+            {
+                return;
+            }
             
             _health = Mathf.Clamp(_health - HealthLoosingSpeed * deltaTime, 0f, 1f);
-
+                
             if (Mathf.Approximately(_health, 0))
             {
                 PauseRun();
@@ -72,7 +79,7 @@ namespace MvpBaseGame.Mvp.Game.Services.Impl
             _runnerObjectsModel.Pencil.MaximumRotation = MaximumPencilRotation;
 
             _isRunning = true;
-            _unityLifecycle.Updated += OnUpdated;
+            Subscribe();
         }
         
         public void PauseRun()
@@ -83,7 +90,7 @@ namespace MvpBaseGame.Mvp.Game.Services.Impl
             }
 
             _isPaused = true;
-            _unityLifecycle.Updated -= OnUpdated;
+            Unsubscribe();
         }
         
         public void ResumeRun()
@@ -95,7 +102,7 @@ namespace MvpBaseGame.Mvp.Game.Services.Impl
             }
 
             _isPaused = false;
-            _unityLifecycle.Updated += OnUpdated;
+            Subscribe();
         }
         
         public void StopRun()
@@ -107,7 +114,7 @@ namespace MvpBaseGame.Mvp.Game.Services.Impl
 
             _isPaused = false;
             _isRunning = false;
-            _unityLifecycle.Updated -= OnUpdated;
+            Unsubscribe();
             
             _health = 1; // TODO: add recovering animation
             Pencil.Rotate(0);
@@ -124,9 +131,27 @@ namespace MvpBaseGame.Mvp.Game.Services.Impl
             Pencil.SetPosition(_startPencilPosition);
         }
 
-        public void Dispose()
+        private void Subscribe()
+        {
+            _unityLifecycle.Updated += OnUpdated;
+            Pencil.NewTaskFound += OnNewTaskFound;
+        }
+
+        private void Unsubscribe()
         {
             _unityLifecycle.Updated -= OnUpdated;
+            Pencil.NewTaskFound -= OnNewTaskFound;
+        }
+        
+        private void OnNewTaskFound()
+        {
+            PauseRun();
+            _viewManager.OpenView(ViewNames.Task);
+        }
+
+        public void Dispose()
+        {
+            Unsubscribe();
         }
     }
 }
