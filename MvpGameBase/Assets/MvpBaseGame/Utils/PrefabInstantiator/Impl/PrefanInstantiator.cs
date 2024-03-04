@@ -49,12 +49,12 @@ namespace MvpBaseGame.Utils.PrefabInstantiator.Impl
                 return comp;
             }
 
-
             if (original is GameObject)
             {
                 var gamObj = _instantiator.InstantiatePrefab(original);
                 return gamObj as T;
             }
+            
             throw new InvalidOperationException("Unknown type to instantiate");
         }
     }

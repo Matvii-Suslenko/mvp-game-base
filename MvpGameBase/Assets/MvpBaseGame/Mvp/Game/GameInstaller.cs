@@ -32,6 +32,7 @@ namespace MvpBaseGame.Mvp.Game
         protected override void BindServices()
         {
             Container.BindInterfacesTo<GameRunnerService>().AsSingle();
+            Container.BindInterfacesTo<GameTaskService>().AsSingle();
         }
         
         protected override void BindPresenters(IPresenterBinder presenterBinder)

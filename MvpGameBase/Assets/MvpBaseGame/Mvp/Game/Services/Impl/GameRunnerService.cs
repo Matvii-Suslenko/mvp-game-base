@@ -13,7 +13,7 @@ namespace MvpBaseGame.Mvp.Game.Services.Impl
     {
         private IPencilObject Pencil => _runnerObjectsModel.Pencil;
         
-        private const float Gravity = -0.02f;
+        private const float Gravity = -9.81f;
         
         private const float MinimumPencilRotation = -30f;
         private const float MaximumPencilRotation = 30f;
@@ -47,7 +47,7 @@ namespace MvpBaseGame.Mvp.Game.Services.Impl
 
         private void OnUpdated(float deltaTime)
         {
-            Pencil.Move(new Vector3(_horizontalMovement * HorizontalSpeedMultiplier * deltaTime, Gravity, ForwardSpeed * deltaTime));
+            Pencil.Move(new Vector3(_horizontalMovement * HorizontalSpeedMultiplier, Gravity, ForwardSpeed) * deltaTime);
             Pencil.Rotate(_horizontalMovement * RotationMultiplier * deltaTime);
             Pencil.SetLength(_health);
             

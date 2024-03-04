@@ -30,7 +30,6 @@ namespace MvpBaseGame.Mvp.ViewManagement.Factories.Impl
         private readonly IViewLayerFocusHandler _viewLayerFocusHandler;
         private readonly ICoroutineRunner _coroutineRunner;
         
-
         public CloseUpperViewsCreateViewStrategy(
             ICoroutineRunner coroutineRunner, 
             IViewLayerFocusHandler viewLayerFocusHandler
@@ -82,17 +81,15 @@ namespace MvpBaseGame.Mvp.ViewManagement.Factories.Impl
             if (currentLayerIndex == _openViewLayerIndex)
             {
                 var currentLayer = layers[_openViewLayerIndex];
+                currentLayer.ViewAdded += OnViewAdded;
+                currentLayer.CreateView(_viewData);
+                return;
                 
                 void OnViewAdded(IViewData viewData)
                 {
                     CreateComplete();
                     currentLayer.ViewAdded -= OnViewAdded;
                 }
-                
-                currentLayer.ViewAdded += OnViewAdded;
-                currentLayer.CreateView(_viewData);
-
-                return;
             }
 
             if (currentLayerIndex == 0)
