@@ -2,8 +2,10 @@ using MvpBaseGame.Mvp.ViewManagement.Core.Impl;
 using MvpBaseGame.Mvp.ViewManagement.Core;
 using MvpBaseGame.Mvp.Game.Payloads.Impl;
 using MvpBaseGame.Mvp.Common.Services;
+using MvpBaseGame.Mvp.Game.Components;
 using MvpBaseGame.Mvp.Game.Data.Impl;
 using MvpBaseGame.Mvp.Game.Models;
+using System.Collections.Generic;
 using MvpBaseGame.Mvp.Game.Data;
 using UnityEngine;
 
@@ -25,6 +27,7 @@ namespace MvpBaseGame.Mvp.Game.Services.Impl
         
         private const float HealthLoosingSpeed = 0.05f;
 
+        private IList<ITaskSticker> _seenTasks = new List<ITaskSticker>();
         private float _horizontalMovement;
         private float _health = 1;
         private bool _isRunning;
@@ -114,6 +117,7 @@ namespace MvpBaseGame.Mvp.Game.Services.Impl
 
             _isPaused = false;
             _isRunning = false;
+            _seenTasks.Clear();
             Unsubscribe();
             
             _health = 1; // TODO: add recovering animation
@@ -131,21 +135,33 @@ namespace MvpBaseGame.Mvp.Game.Services.Impl
             Pencil.SetPosition(_startPencilPosition);
         }
 
+        public void HealPencil()
+        {
+            _health = 1; // TODO: add recovering animation
+            Pencil.SetLength(1);
+        }
+
         private void Subscribe()
         {
             _unityLifecycle.Updated += OnUpdated;
-            Pencil.NewTaskFound += OnNewTaskFound;
+            Pencil.TaskFound += OnTaskFound;
         }
 
         private void Unsubscribe()
         {
             _unityLifecycle.Updated -= OnUpdated;
-            Pencil.NewTaskFound -= OnNewTaskFound;
+            Pencil.TaskFound -= OnTaskFound;
         }
         
-        private void OnNewTaskFound()
+        private void OnTaskFound(ITaskSticker taskSticker)
         {
+            if (_seenTasks.Contains(taskSticker))
+            {
+                return;
+            }
+            
             PauseRun();
+            _seenTasks.Add(taskSticker);
             _viewManager.OpenView(ViewNames.Task);
         }
 

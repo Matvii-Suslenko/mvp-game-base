@@ -34,5 +34,10 @@ namespace MvpBaseGame.Mvp.Game.Services
         /// Resets Pencil Position
         /// </summary>
         void ResetPencilPosition();
+
+        /// <summary>
+        /// Heals Pencil
+        /// </summary>
+        void HealPencil();
     }
 }

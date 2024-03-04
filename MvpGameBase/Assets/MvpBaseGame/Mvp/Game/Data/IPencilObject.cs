@@ -1,3 +1,4 @@
+using MvpBaseGame.Mvp.Game.Components;
 using UnityEngine;
 using System;
 
@@ -6,9 +7,9 @@ namespace MvpBaseGame.Mvp.Game.Data
     public interface IPencilObject
     {
         /// <summary>
-        /// Fires on New Task Found
+        /// Fires on Task Found
         /// </summary>
-        event Action NewTaskFound;
+        event Action<ITaskSticker> TaskFound;
         
         float RotationFading { set; }
         float MinimumRotation { set; }

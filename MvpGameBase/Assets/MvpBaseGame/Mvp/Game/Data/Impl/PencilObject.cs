@@ -1,4 +1,5 @@
 using MvpBaseGame.Mvp.Game.Components;
+using System.Collections.Generic;
 using UnityEngine;
 using System;
 
@@ -6,7 +7,7 @@ namespace MvpBaseGame.Mvp.Game.Data.Impl
 {
     public class PencilObject : MonoBehaviour, IPencilObject
     {
-        public event Action NewTaskFound;
+        public event Action<ITaskSticker> TaskFound;
         
         public float RotationFading { private get; set; }
         public float MinimumRotation { private get; set; }
@@ -31,6 +32,7 @@ namespace MvpBaseGame.Mvp.Game.Data.Impl
         [SerializeField]
         private Transform _tipPart;
 
+        private IList<ITaskSticker> _seenStickers = new List<ITaskSticker>();
         private float _anglesAim;
 
         public void Rotate(float angles)
@@ -86,11 +88,7 @@ namespace MvpBaseGame.Mvp.Game.Data.Impl
             {
                 case"Task":
                     var taskSticker = hit.gameObject.GetComponent<ITaskSticker>();
-                    if (taskSticker is { IsSeen: false })
-                    {
-                        NewTaskFound?.Invoke();
-                        taskSticker.SetIsSeen();
-                    }
+                    TaskFound?.Invoke(taskSticker);
                     break;
             }
         }
