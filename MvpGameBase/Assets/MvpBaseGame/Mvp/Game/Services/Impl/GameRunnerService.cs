@@ -1,6 +1,9 @@
+using MvpBaseGame.Mvp.Common.Views.ConfirmationMessage.Payload;
 using MvpBaseGame.Mvp.ViewManagement.Core.Impl;
+using MvpBaseGame.Utils.CoroutineRunner.Impl;
 using MvpBaseGame.Mvp.ViewManagement.Core;
 using MvpBaseGame.Mvp.Game.Payloads.Impl;
+using MvpBaseGame.Utils.CoroutineRunner;
 using MvpBaseGame.Mvp.Common.Services;
 using MvpBaseGame.Mvp.Game.Components;
 using MvpBaseGame.Mvp.Game.Data.Impl;
@@ -35,15 +38,18 @@ namespace MvpBaseGame.Mvp.Game.Services.Impl
 
         private readonly Vector3 _startPencilPosition = new (12, 0, -22.95f);
         private readonly IRunnerObjectsModel _runnerObjectsModel;
+        private readonly ICoroutineRunner _coroutineRunner;
         private readonly IUnityLifecycle _unityLifecycle;
         private readonly IViewManager _viewManager;
 
         public GameRunnerService(
             IRunnerObjectsModel runnerObjectsModel,
+            ICoroutineRunner coroutineRunner,
             IUnityLifecycle unityLifecycle,
             IViewManager viewManager)
         {
             _runnerObjectsModel = runnerObjectsModel;
+            _coroutineRunner = coroutineRunner;
             _unityLifecycle = unityLifecycle;
             _viewManager = viewManager;
         }
@@ -120,9 +126,8 @@ namespace MvpBaseGame.Mvp.Game.Services.Impl
             _seenTasks.Clear();
             Unsubscribe();
             
-            _health = 1; // TODO: add recovering animation
             Pencil.Rotate(0);
-            Pencil.SetLength(1);
+            HealPencil();
         }
 
         public void MovePencil(float horizontalMovement)
@@ -133,12 +138,6 @@ namespace MvpBaseGame.Mvp.Game.Services.Impl
         public void ResetPencilPosition()
         {
             Pencil.SetPosition(_startPencilPosition);
-        }
-
-        public void HealPencil()
-        {
-            _health = 1; // TODO: add recovering animation
-            Pencil.SetLength(1);
         }
 
         private void Subscribe()
@@ -162,7 +161,28 @@ namespace MvpBaseGame.Mvp.Game.Services.Impl
             
             PauseRun();
             _seenTasks.Add(taskSticker);
-            _viewManager.OpenView(ViewNames.Task);
+            _viewManager.OpenView(ViewNames.Task, new ConfirmationMessagePayload(OnRightAnswered, OnWrongAnswered));
+        }
+
+        private void OnRightAnswered()
+        {
+            // TODO: fix tap
+            
+            HealPencil();
+            _coroutineRunner.AfterSeconds(0.5f, ResumeRun);
+        }
+
+        private void OnWrongAnswered()
+        {
+            // TODO: fix tap
+            
+            _coroutineRunner.AfterSeconds(0.5f, ResumeRun);
+        }
+
+        private void HealPencil()
+        {
+            _health = 1; // TODO: add recovering animation
+            Pencil.SetLength(1);
         }
 
         public void Dispose()
